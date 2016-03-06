@@ -122,8 +122,8 @@
 		625A2C4E1C7EA22000A38E33 /* HussainAemenFinalProject */ = {
 			isa = PBXGroup;
 			children = (
-				625A2C4F1C7EA22000A38E33 /* AppDelegate.swift */,
 				625A2C511C7EA22000A38E33 /* ViewController.swift */,
+				625A2C4F1C7EA22000A38E33 /* AppDelegate.swift */,
 				625A2C531C7EA22000A38E33 /* Main.storyboard */,
 				625A2C851C7EC74A00A38E33 /* ModeManager.swift */,
 				623EE3211C854DF400335891 /* Remote.swift */,

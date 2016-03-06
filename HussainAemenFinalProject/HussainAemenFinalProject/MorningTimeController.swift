@@ -20,6 +20,7 @@ class MorningTimeController: UIViewController,NSURLConnectionDelegate,NSXMLParse
     var element = NSString()
     var title1 = NSMutableString()
     var date = NSMutableString()
+    var timeArr:[String] = []
     
     
     var message:String = "lets go!"
@@ -43,6 +44,7 @@ class MorningTimeController: UIViewController,NSURLConnectionDelegate,NSXMLParse
     
     @IBOutlet weak var getButton: UIButton!
    @IBAction func get(sender: UIButton) {
+    //remote.connect()
         connect("")
    }
    
@@ -117,9 +119,6 @@ class MorningTimeController: UIViewController,NSURLConnectionDelegate,NSXMLParse
             title1.appendString(string)
 
         }
-//        } else if element.isEqualToString("pubDate") {
-//            date.appendString(string)
-//        }
     }
     
     func parser(parser: NSXMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?)
@@ -133,131 +132,75 @@ class MorningTimeController: UIViewController,NSURLConnectionDelegate,NSXMLParse
             
             var arrivalTime = title1 as String
             print(arrivalTime)
-            let timeDiff = getTimeDiff(arrivalTime)
+            let timeDiff = getTime(arrivalTime)
             timeList.text = timeList.text! + "\(timeDiff)" + "\n"
         }
     }
     
-
-//            var index1 = arrivalTime.startIndex.advancedBy(14)
-//            var substring1 = arrivalTime.substringToIndex(index1)
-//            let string3 = "\(substring1)"+":00"
-//            print("oh")
-//            print(string3)
-//            
-//            index1 = string3.startIndex.advancedBy(9)
-//            substring1 = string3.substringFromIndex(index1)
-//            print(substring1)
-//            
-//            let dateFormatter = NSDateFormatter()
-//            dateFormatter.dateFormat = "yyyyMMdd hh:mm:ss"
-//            let arrivalDate = dateFormatter.dateFromString(string3)
-//            
-//            print("yo")
-//            //print(title1)
-//            print(arrivalDate)
-//         
-//            
-//            //time diff 
-//            
-//            //time now
-//            let date = NSDate()
-//            let formatter = NSDateFormatter();
-//            formatter.dateFormat = "hh:mm:ss";
-//            let diff = date.timeIntervalSinceDate(arrivalDate!)
-//            print(diff)
-//            timeList.text = timeList.text! + "\(arrivalTime)" + "\n" + "\(diff)"
-            
-            
-            
-//            let date = NSDate()
-//            let formatter = NSDateFormatter();
-//            formatter.dateFormat = "HH:mm:ss";
-//            let now = "\(formatter.stringFromDate(date))"
-//            // "2015-04-01 08:52:00 -0400" <-- same date, local, but with seconds
-//            return now
-            
- 
     
-    
-    func getTimeDiff (time: String) -> String{
+    func getTime (time: String) -> String{
         var arrivalTime = time
         var index1 = arrivalTime.startIndex.advancedBy(14)
         var substring1 = arrivalTime.substringToIndex(index1)
-        let string3 = "\(substring1)"+":00"
-       // let string3 = "20160303 23:35:00"
+        arrivalTime = "\(substring1)"+":00"
+        var timeDiff = getTime(arrivalTime)
+        print("arrivalTime")
+        print(arrivalTime)
+        arrivalTime = trimToMin(arrivalTime)
+        timeArr.append(arrivalTime)
+        return arrivalTime
+    }
+    
+
+    func trimToMin (timeToTrim : String) -> String {
+        var timeInMin = timeToTrim
+        var index1 = timeInMin.startIndex.advancedBy(3)
+        // var index2 = timeInMin.endIndex.advancedBy(-3)
+        var substring1 = timeInMin.substringFromIndex(index1)
+        print(substring1)
+        index1 = substring1.startIndex.advancedBy(2)
+        let substring2 = substring1.substringToIndex(index1)
+        print(substring2)
+        return substring2
+    }
+    
+    func getTimeDiff (time: String) -> String{
+        let string3 = time
         print("oh")
         print(string3)
         
-        //year
-        index1 = string3.startIndex.advancedBy(4)
-        var substring2 = string3.substringFromIndex(index1)
-        substring1 = string3.substringToIndex(index1)
-        //print(substring1)
-        //print(substring2)
-        
-        var sb3 = "\(substring1)-"
-        //print(sb3)
-        
+        var index1 = string3.startIndex.advancedBy(4)
+        let substring2 = string3.substringFromIndex(index1)
+        var substring1 = string3.substringToIndex(index1)
+        let sb3 = "\(substring1)-"
         index1 = substring2.startIndex.advancedBy(2)
-        var substring3 = substring2.substringFromIndex(index1)
+        let sb2 = substring2.substringFromIndex(index1)
         substring1 = substring2.substringToIndex(index1)
-        
-        var sb4 = "\(sb3)\(substring1)-\(substring3)"
+        let sb4 = "\(sb3)\(substring1)-\(sb2)"
+        print("arrival time")
         print(sb4)
+        
         
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         let arrivalDate = dateFormatter.dateFromString(sb4)
         
-        print("yo")
-        //print(title1)
+        print("time received from API")
         print(arrivalDate)
         
         let date = NSDate()
         let formatter = NSDateFormatter();
         formatter.dateFormat = "hh:mm:ss";
-        print("current date")
+        print("current time")
         print(date)
         let diff = arrivalDate!.timeIntervalSinceDate(date)
+        print("time difference")
         print(diff)
         let ret = stringFromTimeInterval(diff)
+        print("time difference formatted")
         print(ret)
         
         return ret
-        
-       // let dateFormatter = NSDateFormatter()
-        
-//        //dateFormatter.NSTimeZone(abbreviation: "UTC")
-////        dateFormatter.calendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierISO8601)
-////        dateFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
-////        dateFormatter.timeZone = NSTimeZone(forSecondsFromGMT: 0)
-//        dateFormatter.dateFormat = "yyyy-MM-dd hh:mm:ss"
-//        let arrivalDate = dateFormatter.dateFromString(sb4)
-//        //arrivalDate?.dateByAddingTimeInterval(-21600)
-//        
-//        print("yo arrival time")
-//        //print(title1)
-//        print(arrivalDate)
-        
-        
-        //time diff
-        
-        //time now
-//        let date = NSDate()
-//        let formatter = NSDateFormatter();
-//        formatter.dateFormat = "yyyy-MM-dd hh:mm:ss";
-////        dateFormatter.calendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierISO8601)
-////        dateFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
-////        dateFormatter.timeZone = NSTimeZone(forSecondsFromGMT: 0)
-//        let d2 = formatter.stringFromDate(date)
-//        print("current time")
-//        print(d2)
-//        let diff = date.timeIntervalSinceDate(arrivalDate!)
-//        print(diff)
-//        let ret = stringFromTimeInterval(diff)
-//        
-//        return ret
     }
     
     func stringFromTimeInterval(interval: NSTimeInterval) -> String {
@@ -269,7 +212,7 @@ class MorningTimeController: UIViewController,NSURLConnectionDelegate,NSXMLParse
     }
     
 
-    
+
    
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -291,14 +234,6 @@ class MorningTimeController: UIViewController,NSURLConnectionDelegate,NSXMLParse
     override func viewWillAppear(animated: Bool) {
         displaytext.text = message
     }
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
