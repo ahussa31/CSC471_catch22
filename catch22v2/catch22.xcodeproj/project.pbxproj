@@ -17,7 +17,7 @@
 		626BAD0B1C8BC31700D288DE /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626BAD0A1C8BC31700D288DE /* ListView.swift */; };
 		626BAD0D1C8BC5C400D288DE /* countDownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626BAD0C1C8BC5C400D288DE /* countDownView.swift */; };
 		626BAD0F1C8BC94200D288DE /* remote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626BAD0E1C8BC94200D288DE /* remote.swift */; };
-		626BAD111C8BC98600D288DE /* modelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626BAD101C8BC98600D288DE /* modelData.swift */; };
+		626DAB211C8E78A200A3E668 /* modelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626DAB201C8E78A200A3E668 /* modelData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,7 +54,7 @@
 		626BAD0A1C8BC31700D288DE /* ListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
 		626BAD0C1C8BC5C400D288DE /* countDownView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = countDownView.swift; sourceTree = "<group>"; };
 		626BAD0E1C8BC94200D288DE /* remote.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = remote.swift; sourceTree = "<group>"; };
-		626BAD101C8BC98600D288DE /* modelData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = modelData.swift; path = ../modelData.swift; sourceTree = "<group>"; };
+		626DAB201C8E78A200A3E668 /* modelData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = modelData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,7 +105,7 @@
 		626BACDB1C8BC1C800D288DE /* catch22 */ = {
 			isa = PBXGroup;
 			children = (
-				626BAD101C8BC98600D288DE /* modelData.swift */,
+				626DAB201C8E78A200A3E668 /* modelData.swift */,
 				626BACDC1C8BC1C800D288DE /* AppDelegate.swift */,
 				626BACDE1C8BC1C800D288DE /* start.swift */,
 				626BAD0E1C8BC94200D288DE /* remote.swift */,
@@ -268,11 +268,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				626BAD111C8BC98600D288DE /* modelData.swift in Sources */,
 				626BACDF1C8BC1C800D288DE /* start.swift in Sources */,
 				626BAD0F1C8BC94200D288DE /* remote.swift in Sources */,
 				626BACDD1C8BC1C800D288DE /* AppDelegate.swift in Sources */,
 				626BAD0D1C8BC5C400D288DE /* countDownView.swift in Sources */,
+				626DAB211C8E78A200A3E668 /* modelData.swift in Sources */,
 				626BAD0B1C8BC31700D288DE /* ListView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -498,6 +498,7 @@
 				626BAD031C8BC1C900D288DE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		626BAD041C8BC1C900D288DE /* Build configuration list for PBXNativeTarget "catch22Tests" */ = {
 			isa = XCConfigurationList;
@@ -506,6 +507,7 @@
 				626BAD061C8BC1C900D288DE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		626BAD071C8BC1C900D288DE /* Build configuration list for PBXNativeTarget "catch22UITests" */ = {
 			isa = XCConfigurationList;
@@ -514,6 +516,7 @@
 				626BAD091C8BC1C900D288DE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

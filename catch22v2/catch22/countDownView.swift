@@ -38,6 +38,14 @@ class countDownView: UIViewController {
         count = Int (mins)!
     }
     
+    func displayNotification () {
+        if (countDown.text == "0"){
+            let alert = UIAlertController (title:"Your bus is here!!!", message: "Did you make it?", preferredStyle: .ActionSheet)
+            alert.addAction(UIAlertAction(title: "Sure did!", style: UIAlertActionStyle.Default, handler: nil))
+            presentViewController(alert, animated: true, completion: nil)
+            sendNotification()
+        }
+    }
     
     func update() {
         if(count > 0)
@@ -45,11 +53,21 @@ class countDownView: UIViewController {
             countDown.text = String(count--)
             print(count)
             countDown.text = "\(count)"
-        } else if (count == 0) {
+        } else {
             countDown.text = "0"
-        }else {
+            displayNotification()
             timer.invalidate()
         }}
+    
+    func sendNotification() {
+        var localNotification = UILocalNotification()
+        localNotification.fireDate = NSDate(timeIntervalSinceNow: 3)
+        localNotification.alertBody = "Your bus is here!"
+        localNotification.timeZone = NSTimeZone.defaultTimeZone()
+        localNotification.applicationIconBadgeNumber = UIApplication.sharedApplication().applicationIconBadgeNumber + 1
+        
+        UIApplication.sharedApplication().scheduleLocalNotification(localNotification)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

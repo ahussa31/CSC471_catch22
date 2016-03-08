@@ -30,6 +30,7 @@ class ListView: UIViewController, UITableViewDataSource, UITableViewDelegate {
         print(mainInstance.arrivalArr.count)
         print("count2")
         print(timeArr.count)
+        
     }
     
     
