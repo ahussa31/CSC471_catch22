@@ -16,7 +16,6 @@ class ListView: UIViewController, UITableViewDataSource, UITableViewDelegate {
     var subtext = "minutes remaining"
     
     @IBOutlet weak var timeDiffView: UITextField!
-
     @IBOutlet weak var diffList: UITableView!
     
     override func viewDidLoad() {
@@ -26,10 +25,10 @@ class ListView: UIViewController, UITableViewDataSource, UITableViewDelegate {
         diffList.delegate = self
         diffList.dataSource = self
         timeArr = mainInstance.arrivalArr
-        print("count")
-        print(mainInstance.arrivalArr.count)
-        print("count2")
-        print(timeArr.count)
+        //print("count")
+        //print(mainInstance.arrivalArr.count)
+        //print("count2")
+        //print(timeArr.count)
         
     }
     

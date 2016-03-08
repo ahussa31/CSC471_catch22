@@ -10,18 +10,14 @@ import UIKit
 
 class countDownView: UIViewController {
     
-    
-   
-    
+
     @IBOutlet weak var back: UIButton!
     
     @IBOutlet weak var cd: UILabel!
     @IBOutlet weak var countDown: UILabel!
-    
 
     var timer = NSTimer()
     var count:Int = 0
-    
     var mins: String = ""
     
     func begin () {
@@ -65,7 +61,6 @@ class countDownView: UIViewController {
         localNotification.alertBody = "Your bus is here!"
         localNotification.timeZone = NSTimeZone.defaultTimeZone()
         localNotification.applicationIconBadgeNumber = UIApplication.sharedApplication().applicationIconBadgeNumber + 1
-        
         UIApplication.sharedApplication().scheduleLocalNotification(localNotification)
     }
     
