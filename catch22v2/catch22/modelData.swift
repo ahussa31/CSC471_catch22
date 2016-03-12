@@ -13,11 +13,13 @@ class Main {
 //    var time:String
 //    var response:String
     var arrivalArr = [String]()
-    init(arrivalArr:[String]) {
+    var mode:String
+    init(arrivalArr:[String], mode:String) {
 //        self.name = name
 //        self.time = time
 //        self.response = response
        self.arrivalArr = arrivalArr
+       self.mode = mode
     }
     
 
@@ -27,6 +29,6 @@ class Main {
 //
 //var mainInstance = Main(name:"My Global Class",time:"", response:"", arrivalArr: [])
 
-    var mainInstance = Main ( arrivalArr: [])
-    
+var mainInstance = Main ( arrivalArr: [], mode: "")
+
 

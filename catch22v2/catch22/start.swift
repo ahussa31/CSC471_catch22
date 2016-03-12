@@ -36,8 +36,11 @@ class start: UIViewController, NSURLConnectionDelegate, NSXMLParserDelegate  {
 //        timeArr.append(b)
         
         switch sender.tag{
+            
         case 1 : url = "http://www.ctabustracker.com/bustime/api/v1/getpredictions?key=fBiEGFmNu8TM3YTvQvGKRQJeD&rt=22&stpid=15744&top=60"
+            mainInstance.mode = "morning"
         case 2: url = "http://www.ctabustracker.com/bustime/api/v1/getpredictions?key=fBiEGFmNu8TM3YTvQvGKRQJeD&rt=22&stpid=15399&top=60"
+            mainInstance.mode = "evening"
         default: ()
             break
         }
@@ -223,10 +226,7 @@ class start: UIViewController, NSURLConnectionDelegate, NSXMLParserDelegate  {
         super.viewDidLoad()
     }
     
-//    override func viewWillAppear(animated: Bool) {
-//       timeArr = testArr
-//        
-//    }
+
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
