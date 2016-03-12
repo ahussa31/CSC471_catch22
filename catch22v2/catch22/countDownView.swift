@@ -11,6 +11,7 @@ import UIKit
 class countDownView: UIViewController {
     
 
+    @IBOutlet weak var tripComplete: UIButton!
     @IBOutlet weak var back: UIButton!
     
     @IBOutlet weak var cd: UILabel!
@@ -32,9 +33,20 @@ class countDownView: UIViewController {
             countDown.text = "\(mins)"
         }
         count = Int (mins)!
+
     }
     
-    func displayNotification () {
+    func fiveMinWarning(){
+        if (countDown.text == "5"){
+            let alert = UIAlertController (title:"Your bus will be here in 5 min!!!", message: "Are you ready?", preferredStyle: .ActionSheet)
+            alert.addAction(UIAlertAction(title: "Sure did!", style: UIAlertActionStyle.Default, handler: nil))
+            presentViewController(alert, animated: true, completion: nil)
+            sendWarning()
+        }
+        
+    }
+    
+    func ZeroWarning () {
         if (countDown.text == "0"){
             let alert = UIAlertController (title:"Your bus is here!!!", message: "Did you make it?", preferredStyle: .ActionSheet)
             alert.addAction(UIAlertAction(title: "Sure did!", style: UIAlertActionStyle.Default, handler: nil))
@@ -49,9 +61,12 @@ class countDownView: UIViewController {
             countDown.text = String(count--)
             print(count)
             countDown.text = "\(count)"
+            if (countDown.text == "5"){
+                fiveMinWarning()
+            }
         } else {
             countDown.text = "0"
-            displayNotification()
+            ZeroWarning()
             timer.invalidate()
         }}
     
@@ -62,6 +77,19 @@ class countDownView: UIViewController {
         localNotification.timeZone = NSTimeZone.defaultTimeZone()
         localNotification.applicationIconBadgeNumber = UIApplication.sharedApplication().applicationIconBadgeNumber + 1
         UIApplication.sharedApplication().scheduleLocalNotification(localNotification)
+    }
+    
+    func sendWarning() {
+        var localNotification = UILocalNotification()
+        localNotification.fireDate = NSDate(timeIntervalSinceNow: 3)
+        localNotification.alertBody = "Your bus is 5 mins away!"
+        localNotification.timeZone = NSTimeZone.defaultTimeZone()
+        localNotification.applicationIconBadgeNumber = UIApplication.sharedApplication().applicationIconBadgeNumber + 1
+        UIApplication.sharedApplication().scheduleLocalNotification(localNotification)
+    }
+    
+    @IBAction func completeTrip(sender: UIButton) {
+        performSegueWithIdentifier("toGreeting", sender: tripComplete)
     }
     
     override func viewDidLoad() {
@@ -78,13 +106,20 @@ class countDownView: UIViewController {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let home = segue.destinationViewController as? start {
-            home.test = "oh"
+        if (segue.identifier == "goHome"){
+            if let home = segue.destinationViewController as? start {
+                home.test = "oh"
+                mainInstance.arrivalArr = []
             //            if let indexPath = self.start.indexPathForSelectedRow {
             //                CDview.mins = alltimes[indexPath.row]
             //            }
         }
-        
+        }
+        if (segue.identifier == "toGreeting") {
+            if let greeting = segue.destinationViewController as? GreetingView {
+               greeting.test = "test"
+            }
+        }
     }
     
     

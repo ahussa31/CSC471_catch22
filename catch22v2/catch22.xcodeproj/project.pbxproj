@@ -18,6 +18,7 @@
 		626BAD0D1C8BC5C400D288DE /* countDownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626BAD0C1C8BC5C400D288DE /* countDownView.swift */; };
 		626BAD0F1C8BC94200D288DE /* remote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626BAD0E1C8BC94200D288DE /* remote.swift */; };
 		626DAB211C8E78A200A3E668 /* modelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626DAB201C8E78A200A3E668 /* modelData.swift */; };
+		62CAB5B01C94CA730022F06A /* GreetingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62CAB5AF1C94CA730022F06A /* GreetingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		626BAD0C1C8BC5C400D288DE /* countDownView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = countDownView.swift; sourceTree = "<group>"; };
 		626BAD0E1C8BC94200D288DE /* remote.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = remote.swift; sourceTree = "<group>"; };
 		626DAB201C8E78A200A3E668 /* modelData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = modelData.swift; sourceTree = "<group>"; };
+		62CAB5AF1C94CA730022F06A /* GreetingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GreetingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +112,7 @@
 				626BACDE1C8BC1C800D288DE /* start.swift */,
 				626BAD0E1C8BC94200D288DE /* remote.swift */,
 				626BACE01C8BC1C800D288DE /* Main.storyboard */,
+				62CAB5AF1C94CA730022F06A /* GreetingView.swift */,
 				626BAD0C1C8BC5C400D288DE /* countDownView.swift */,
 				626BAD0A1C8BC31700D288DE /* ListView.swift */,
 				626BACE31C8BC1C800D288DE /* Assets.xcassets */,
@@ -269,6 +272,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				626BACDF1C8BC1C800D288DE /* start.swift in Sources */,
+				62CAB5B01C94CA730022F06A /* GreetingView.swift in Sources */,
 				626BAD0F1C8BC94200D288DE /* remote.swift in Sources */,
 				626BACDD1C8BC1C800D288DE /* AppDelegate.swift in Sources */,
 				626BAD0D1C8BC5C400D288DE /* countDownView.swift in Sources */,
