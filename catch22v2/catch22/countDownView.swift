@@ -83,7 +83,7 @@ class countDownView: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         begin()
-        timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector("update"), userInfo: nil, repeats: true)
+        timer = NSTimer.scheduledTimerWithTimeInterval(59, target: self, selector: Selector("update"), userInfo: nil, repeats: true)
     }
     
     override func didReceiveMemoryWarning() {
