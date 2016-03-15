@@ -9,9 +9,8 @@
 import UIKit
 
 class ListView: UIViewController, UITableViewDataSource, UITableViewDelegate {
- //   @IBOutlet weak var diffList: UITableView!
-  //  @IBOutlet weak var timeDiffView: UITextField!
     var timeArr: [String] = mainInstance.arrivalArr
+    var test:String = ""
 
     var subtext = "minutes remaining"
     
@@ -25,10 +24,7 @@ class ListView: UIViewController, UITableViewDataSource, UITableViewDelegate {
         diffList.delegate = self
         diffList.dataSource = self
         timeArr = mainInstance.arrivalArr
-        //print("count")
-        //print(mainInstance.arrivalArr.count)
-        //print("count2")
-        //print(timeArr.count)
+
         
     }
     
@@ -44,7 +40,6 @@ class ListView: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     
     func tableView(diffList: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        //let item = alltimes[indexPath.row]
         let cell = diffList.dequeueReusableCellWithIdentifier("timeLeft", forIndexPath: indexPath) as UITableViewCell
         cell.textLabel?.text = self.timeArr[indexPath.row]
         cell.detailTextLabel!.text = subtext

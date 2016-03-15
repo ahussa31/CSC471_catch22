@@ -17,26 +17,15 @@ class start: UIViewController, NSURLConnectionDelegate, NSXMLParserDelegate  {
     var data = NSMutableData()
     var data2 = NSData()
     var date = NSMutableString()
-    // var times = ""
+  
     var test = ""
-    // var test2 = NSString()
-    //var message:String = "lets go!"
     var url = ""
-    var timeArr:[String] = []
-    //var testArr:[String] = []
-   // @IBOutlet weak var timeList: UILabel!
+
     @IBOutlet weak var get1: UIButton!
     @IBOutlet weak var get2: UIButton!
+    
     @IBAction func getAction(sender: UIButton) {
-//        let time1 = "20160305 18:52:00"
-//        let a = getTimeDiff(time1)
-//        timeArr.append(a)
-//        let time2 = "20160305 19:38:00"
-//        let b = getTimeDiff(time2)
-//        timeArr.append(b)
-        
         switch sender.tag{
-            
         case 1 : url = "http://www.ctabustracker.com/bustime/api/v1/getpredictions?key=fBiEGFmNu8TM3YTvQvGKRQJeD&rt=22&stpid=15744&top=60"
             mainInstance.mode = "morning"
         case 2: url = "http://www.ctabustracker.com/bustime/api/v1/getpredictions?key=fBiEGFmNu8TM3YTvQvGKRQJeD&rt=22&stpid=15399&top=60"
@@ -44,25 +33,15 @@ class start: UIViewController, NSURLConnectionDelegate, NSXMLParserDelegate  {
         default: ()
             break
         }
-        
-        print("timeArr size2")
-        print(timeArr.count)
-        print("main instance size2")
-        print(mainInstance.arrivalArr.count)
+
         
         let request = NSMutableURLRequest(URL: NSURL(string: url)!)
         httpGet (request) {
             (data, error) -> Void in
             if error != nil {
-                print(error)
                 mainInstance.arrivalArr.append("no arrival times")
             } else {
                 self.beginParsing()
-                print(data)
-                print("timeArr size3")
-                print(self.timeArr.count)
-                print("main instance size3")
-                print(mainInstance.arrivalArr.count)
             }
          self.performSegueWithIdentifier("onToList", sender: nil)
         }
@@ -124,18 +103,9 @@ class start: UIViewController, NSURLConnectionDelegate, NSXMLParserDelegate  {
             }
             
             posts.addObject(elements)
-            //testArr.append(title1 as String)
-            //print(title1)
-            //print("size testArr")
-            //print(testArr.count)
             var finalTimeStr = title1 as String
             finalTimeStr = getTime(finalTimeStr)
-            timeArr.append(finalTimeStr)
-            print("timeArr size")
-            print(timeArr.count)
             mainInstance.arrivalArr.append(finalTimeStr)
-            print("main instance size")
-            print(mainInstance.arrivalArr.count)
         }
     }
 
@@ -146,8 +116,6 @@ class start: UIViewController, NSURLConnectionDelegate, NSXMLParserDelegate  {
         let substring1 = arrivalTime.substringToIndex(index1)
         arrivalTime = "\(substring1)"+":00"
         var timeA = getTimeDiff(arrivalTime)
-        //print("getTime")
-        //print(timeA)
         timeA = trimToMin(timeA)
         return timeA
     }
@@ -156,52 +124,35 @@ class start: UIViewController, NSURLConnectionDelegate, NSXMLParserDelegate  {
     
     func trimToMin (timeToTrim : String) -> String {
         let timeInMin = timeToTrim
-        var index1 = timeInMin.startIndex.advancedBy(3)
-        let substring1 = timeInMin.substringFromIndex(index1)
-       // print(substring1)
-        index1 = substring1.startIndex.advancedBy(2)
-        let substring2 = substring1.substringToIndex(index1)
-        //print("trim to min")
-        //print(substring2)
+        var index = timeInMin.startIndex.advancedBy(3)
+        let substring1 = timeInMin.substringFromIndex(index)
+        index = substring1.startIndex.advancedBy(2)
+        let substring2 = substring1.substringToIndex(index)
         return substring2
     }
     
     func getTimeDiff (time: String) -> String{
-        let string3 = time
-        //print("getTimeDiff")
-        //print(string3)
+        let timeString = time
         
-        var index1 = string3.startIndex.advancedBy(4)
-        let substring2 = string3.substringFromIndex(index1)
-        var substring1 = string3.substringToIndex(index1)
-        let sb3 = "\(substring1)-"
-        index1 = substring2.startIndex.advancedBy(2)
-        let sb2 = substring2.substringFromIndex(index1)
-        substring1 = substring2.substringToIndex(index1)
-        let sb4 = "\(sb3)\(substring1)-\(sb2)"
-        //print("arrival time")
-        //print(sb4)
-        
+        var index = timeString.startIndex.advancedBy(4)
+        var substring2 = timeString.substringFromIndex(index)
+        let substring1 = timeString.substringToIndex(index)
+        //let sb3 = "\(substring1)-"
+        index = substring2.startIndex.advancedBy(2)
+        let substring3 = substring2.substringFromIndex(index)
+        substring2 = substring2.substringToIndex(index)
+        let substring4 = "\(substring1)-\(substring2)-\(substring3)"
         
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        let arrivalDate = dateFormatter.dateFromString(sb4)
-        
-        //print("time received from API")
-        //print(arrivalDate)
+        let arrivalDate = dateFormatter.dateFromString(substring4)
         
         let date = NSDate()
         let formatter = NSDateFormatter();
         formatter.dateFormat = "hh:mm:ss";
-        //print("current time")
-        //print(date)
+
         let diff = arrivalDate!.timeIntervalSinceDate(date)
-        //print("time difference")
-        //print(diff)
         let ret = stringFromTimeInterval(diff)
-        //print("time difference formatted")
-        //print(ret)
-        
         return ret
     }
     
@@ -216,18 +167,15 @@ class start: UIViewController, NSURLConnectionDelegate, NSXMLParserDelegate  {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let CDview = segue.destinationViewController as? ListView {
-            CDview.timeArr = timeArr
+            CDview.test = test
         }
-        
     }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
 
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
